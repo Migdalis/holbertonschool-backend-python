@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-""" Async routine """
-
+""" Async routine that takes in 2 int arguments """
+from typing import List
 
 wait_random = __import__('0-basic_async_syntax').wait_random
 
