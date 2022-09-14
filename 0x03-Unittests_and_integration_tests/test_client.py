@@ -91,3 +91,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """ Method to test the public_repos with the argument license """
         test_class = GithubOrgClient("holberton")
         assert True
+
+
+if __name__ == '__main__':
+    unittest.main()
