@@ -12,17 +12,17 @@ import requests
 class TestGithubOrgClient(unittest.TestCase):
     """ Class to test client.GithubOrgClient """
     @parameterized.expand([
-        ("google", {}),
-        ("abc", {})
+        ("google"),
+        ("abc")
     ])
     @patch('client.get_json')
-    def test_org(self, url, expected_result, mock):
+    def test_org(self, expected_result, mock):
         """ Method to tests that GithubOrgClient.org
         returns the correct value """
-        mock.return_value = {}
-        resp = GithubOrgClient(url)
-        self.assertEqual(resp.org, expected_result)
-        mock.assert_called_once()
+        endpoint = 'https://api.github.com/orgs/{}'.format(expected_result)
+        spec = GithubOrgClient(expected_result)
+        spec.org()
+        mock.assert_called_once_with(endpoint)
 
     def test_public_repos_url(self):
         """ Method to tests that _public_repos_url returns a known payload """
