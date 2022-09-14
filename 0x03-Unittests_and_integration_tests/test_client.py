@@ -17,7 +17,8 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     @patch('client.get_json')
     def test_org(self, url, expected_result, mock):
-        """ Method to tests that GithubOrgClient.org returns the correct value """
+        """ Method to tests that GithubOrgClient.org
+        returns the correct value """
         mock.return_value = {}
         resp = GithubOrgClient(url)
         self.assertEqual(resp.org, expected_result)
