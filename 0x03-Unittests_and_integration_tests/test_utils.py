@@ -27,6 +27,7 @@ class TestAccessNestedMap(unittest.TestCase):
         """ Method to test that a KeyError is raised for the inputs """
         self.assertRaises(KeyError, access_nested_map, map, path)
 
+
 class TestGetJson(unittest.TestCase):
     """ Class to test the get_json function """
     @parameterized.expand([
