@@ -2,6 +2,7 @@
 """  Module to testing """
 
 import unittest
+from unittest import result
 from unittest.mock import patch, PropertyMock
 from client import GithubOrgClient
 from parameterized import parameterized, parameterized_class
@@ -24,14 +25,15 @@ class TestGithubOrgClient(unittest.TestCase):
         spec.org()
         mock.assert_called_once_with(endpoint)
 
-    def test_public_repos_url(self):
+    @parameterized.expand([
+        ('random_url', {'repos_url': 'http://some_url.com'})
+    ])
+    def test_public_repos_url(self, name, result):
         """ Method to tests that _public_repos_url returns a known payload """
         with patch('client.GithubOrgClient.org',
-                   new_callable=PropertyMock) as mock:
-            mock.return_value = {'repos_url': 'http://testing.url'}
-            tag = GithubOrgClient('xyz')
-            resp = tag._public_repos_url
-            self.assertEqual(resp, mock.return_value.get('repos_url'))
+                   PropertyMock(return_value=result)):
+            rsps = GithubOrgClient(name)._public_repos_url
+            self.assertEqual(rsps, result.get('repos_url'))
 
     @patch('client.get_json')
     def test_public_repos(self, get_json_mock):
