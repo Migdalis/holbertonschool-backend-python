@@ -87,7 +87,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         self.assertEqual(ghc.org, self.org_payload)
         self.assertEqual(ghc.repos_payload, self.repos_payload)
 
-
     def test_public_repos_with_license(self):
         """ Method to test the public_repos with the argument license """
         test_class = GithubOrgClient("holberton")
