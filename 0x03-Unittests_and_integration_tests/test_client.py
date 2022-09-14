@@ -58,7 +58,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ({"license": {"key": "other_license"}}, "my_license", False)
     ])
     def test_has_license(self, repo, key, expectation):
-        '''self descriptive'''
+        """ Method to test that has_license return the correct value """
         result = GithubOrgClient.has_license(repo, key)
         self.assertEqual(result, expectation)
 
@@ -81,7 +81,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher.stop()
 
     def test_public_repos(self):
-        """test public repos """
         """ Mehod to test GithubOrgClient.public_repos """
         ghc = GithubOrgClient('random')
         self.assertEqual(ghc.org, self.org_payload)
